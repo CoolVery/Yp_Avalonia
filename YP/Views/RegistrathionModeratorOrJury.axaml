@@ -1,0 +1,107 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="YP.Views.RegistrathionModeratorOrJury"
+			 xmlns:vm="using:YP.ViewModels"
+			 x:DataType="vm:RegistrathionModeratorOrJuryViewModel">
+	<UserControl.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="TextAlignment" Value="End" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+	</UserControl.Styles>
+
+	<Grid RowDefinitions="*, 5*">
+		<Grid ColumnDefinitions="*, *" Grid.Row="1" ShowGridLines="True" VerticalAlignment="Center">
+			<Grid ColumnDefinitions="*" ShowGridLines="True">
+				<StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="IdNumber:"/>
+						<TextBox Text="{Binding NewUser.Id}" IsEnabled="False" Width="200"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="ФИО:"/>
+						<TextBox Text="{Binding NewUser.FullName}" Width="200"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Пол:"/>
+						<ComboBox ItemsSource="{Binding Genders}" Width="200" SelectedItem="{Binding NewUser.IdGenderNavigation}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Name}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Роль:"/>
+						<ComboBox ItemsSource="{Binding Roles}" Width="200" SelectedItem="{Binding NewUser.IdRoleNavigation}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Name}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Телефон:"/>
+						<MaskedTextBox Mask="+7(000)-000-00-00" Width="200"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Направление:"/>
+						<StackPanel>
+							<ComboBox ItemsSource="{Binding Directions}" Width="200">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+							<StackPanel Orientation="Horizontal">
+								<CheckBox />
+								<TextBlock FontSize="10" Text="Прикрепить к мероприятию"/>
+							</StackPanel>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Мероприятие:"/>
+						<ComboBox ItemsSource="{Binding Events}" Width="200">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Name}"/>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+				</StackPanel>
+
+
+			</Grid>
+			<StackPanel Grid.Column="1" HorizontalAlignment="Right">
+				<StackPanel>
+					<Image />
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Margin="53 0 10 0" Text="Пароль:"/>
+						<TextBox Width="200"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Margin="0 0 10 0" Text="Повтор пароля:"/>
+						<StackPanel>
+							<TextBox Width="200"/>
+							<StackPanel Orientation="Horizontal">
+								<CheckBox />
+								<TextBlock FontSize="10" Text="Видимый пароль"/>
+							</StackPanel>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+						<Button Content="Ок" Padding="30 3 30 3" Margin="0 0 10 0"/>
+						<Button Content="Отмена" Padding="15 3 15 3"/>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

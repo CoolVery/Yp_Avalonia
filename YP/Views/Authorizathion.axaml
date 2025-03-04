@@ -9,6 +9,6 @@
 	<StackPanel>
 		<TextBox Watermark="Айди пользователя" Text="{Binding IdNumber}"/>
 		<TextBox Watermark="Пароль" Text="{Binding Password}" />
-		<Button Content="Войти"/>
+		<Button Content="Войти" Command="{Binding AuthorizathionInSystem}"/>
 	</StackPanel>
 </UserControl>

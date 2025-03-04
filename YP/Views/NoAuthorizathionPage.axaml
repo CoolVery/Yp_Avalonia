@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="YP.Views.NoAuthorizathionPage"
+			 xmlns:vm="using:YP.ViewModels"
+			 x:DataType="vm:NoAuthorizathionPageViewModel">
+	
+	<Grid RowDefinitions="*, 5*" ShowGridLines="True">
+		<Button Content="Авторизироваться" Command="{Binding ToAuth}"/>
+		<ListBox Grid.Row="1" ItemsSource="{Binding ListEventsDTO}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="*, 2*, 2*, 2*" ShowGridLines="True">
+						<Image Source="{Binding ImagePath}"/>
+						<TextBlock Grid.Column="1" Text="{Binding Name}"/>
+						<TextBlock Grid.Column="2"	Text="{Binding IdTypeEventNavigation.Name}"/>
+						<DatePicker Grid.Column="3" SelectedDate="{Binding DateStart}"/>
+
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>

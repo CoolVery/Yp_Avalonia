@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="YP.Views.Manager"
+			 xmlns:vm="using:YP.ViewModels"
+			 x:DataType="vm:ManagerViewModel">
+	<Grid RowDefinitions="*, 5*">
+		<TextBlock Text="Окно Организатора" TextAlignment="Center" />
+		<Grid Grid.Row="1" ColumnDefinitions="*, 2*, *" ShowGridLines="True">
+			<StackPanel>
+				<Image Source="{Binding UserImage}"/>
+
+				<Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30 150 30 0">
+					<Panel>
+						<TextBlock Text="Мой профиль" Margin="0 0 0 0" Padding="0 20 0 20" TextAlignment="Center"/>
+					</Panel>
+				</Border>
+			</StackPanel>
+			<StackPanel Grid.Column="1">
+				<TextBlock Text="{Binding HellowStringInSystem}" TextAlignment="Center"/>
+				<Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="50 30 50 0">
+					<Panel>
+						<TextBlock Text="Мероприятия" Margin="40" TextAlignment="Center"/>
+					</Panel>
+				</Border>
+				<Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="50 10 50 0">
+					<Panel>
+						<TextBlock Text="Участники" Margin="40" TextAlignment="Center"/>
+					</Panel>
+				</Border>
+				<Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="50 10 50 0">
+					<Panel>
+						<TextBlock Text="Жюри" Margin="40" TextAlignment="Center"/>
+					</Panel>
+				</Border>
+			</StackPanel>
+			<Button Grid.Column="2" Content="Зарегестрировать модератора/жюри" Command="{Binding ToRegistrathionModeratorOrJury}"/>
+			</Grid>
+	</Grid>
+</UserControl>

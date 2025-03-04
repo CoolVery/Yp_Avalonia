@@ -101,22 +101,22 @@
             }
             return resultNum;
         }
-        string GetNextMarkAfterInRange(string prevMark, string rangeStart, string rangeEnd)
-        {
-            int numberMark = Convert.ToInt32(prevMark[1..3]);
-            if (numberMark < Convert.ToInt32(rangeStart[1..3]) || numberMark > Convert.ToInt32(rangeEnd[1..3]))
-            {
-                return "out of stock";
-            }
-            else if (numberMark == 999)
-            {
+        //string GetNextMarkAfterInRange(string prevMark, string rangeStart, string rangeEnd)
+        //{
+        //    int numberMark = Convert.ToInt32(prevMark[1..3]);
+        //    if (numberMark < Convert.ToInt32(rangeStart[1..3]) || numberMark > Convert.ToInt32(rangeEnd[1..3]))
+        //    {
+        //        return "out of stock";
+        //    }
+        //    else if (numberMark == 999)
+        //    {
 
-            }
-        }
-        int GetCombinationsCountInRange(string mark1, string mark2)
-        {
+        //    }
+        //}
+        //int GetCombinationsCountInRange(string mark1, string mark2)
+        //{
 
-        }
+        //}
 
     }
 }
