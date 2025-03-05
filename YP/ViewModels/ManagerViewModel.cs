@@ -28,7 +28,7 @@ namespace YP.ViewModels
 		{
             string nameAndGenderUser = "";
 			this.currentUser = currentUser;
-            string imagePath = @"avares://Yp/Assets/users/" + currentUser.Image;
+            string imagePath = @"avares://Yp/Assets/users/" + currentUser.Photo;
             userImage = new Bitmap(AssetLoader.Open(new Uri(imagePath)));
 
             switch (currentUser.IdGender)

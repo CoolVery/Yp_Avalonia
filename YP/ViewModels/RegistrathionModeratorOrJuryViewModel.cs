@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
+using DynamicData.Aggregation;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using YP.Models;
@@ -24,10 +26,12 @@ namespace YP.ViewModels
         Event _selectedEventForUser;
         string _repeatPassword;
         bool _isWrongRepeatPassword = false;
+        bool _isWrongEmail = false;
+        bool _isWrongRegexPassword = false;
         List<Direction> _directions;
         Direction _selectedDirectionForUser;
 		char _passwordHideChar = '*';
-		bool _showPassword = true;
+		bool _showPassword = false;
         bool _isCanEventEnable = true;
         bool _isCreatedNewUser = false;
         Bitmap _image;
@@ -46,10 +50,10 @@ namespace YP.ViewModels
 				this.RaiseAndSetIfChanged(ref _showPassword, value);
 				switch (value)
 				{
-					case true:
+					case false:
 						PasswordHideChar = '*';
 						break;
-					case false:
+					case true:
 						PasswordHideChar = '\0';
 						break;
 				}
@@ -80,6 +84,8 @@ namespace YP.ViewModels
         public bool IsWrongRepeatPassword { get => _isWrongRepeatPassword; set => this.RaiseAndSetIfChanged(ref _isWrongRepeatPassword, value); }
         public Direction SelectedDirectionForUser { get => _selectedDirectionForUser; set => this.RaiseAndSetIfChanged(ref _selectedDirectionForUser, value); }
         public bool IsCreatedNewUser { get => _isCreatedNewUser; set => this.RaiseAndSetIfChanged(ref _isCreatedNewUser, value); }
+        public bool IsWrongEmail { get => _isWrongEmail; set => this.RaiseAndSetIfChanged(ref _isWrongEmail, value); }
+        public bool IsWrongRegexPassword { get => _isWrongRegexPassword; set => this.RaiseAndSetIfChanged(ref _isWrongRegexPassword, value); }
 
         public RegistrathionModeratorOrJuryViewModel(User currentUser)
         {
@@ -128,9 +134,30 @@ namespace YP.ViewModels
         
         public void SaveNewJuryOrModerator()
         {
+            Regex regexEmail = new Regex(@"^[a-zA-Z0-9_%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+            MatchCollection matchesEmail = regexEmail.Matches(NewUser.Email);
+            Regex regaxPassword = new Regex(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;'""<>,.?/~\\-]).{6,}$");
+            MatchCollection matchesPassword = regaxPassword.Matches(NewUser.Password);
+
             if (NewUser.Password != RepeatPassword)
             {
                 IsWrongRepeatPassword = true;
+                IsCreatedNewUser = false;
+                IsWrongEmail = false;
+                IsWrongRegexPassword = false;
+            }
+            else if (matchesEmail.Count != 1)
+            {
+                IsWrongEmail = true;
+                IsWrongRepeatPassword = false;
+                IsCreatedNewUser = false;
+                IsWrongRegexPassword = false;
+            }
+            else if (matchesPassword.Count != 1)
+            {
+                IsWrongRegexPassword = true;
+                IsWrongEmail = false;
+                IsWrongRepeatPassword = false;
                 IsCreatedNewUser = false;
             }
             else

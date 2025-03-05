@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace YP.Models;
 
-public partial class PostgresContext : DbContext
+public partial class YpContext : DbContext
 {
-    public PostgresContext()
+    public YpContext()
     {
     }
 
-    public PostgresContext(DbContextOptions<PostgresContext> options)
+    public YpContext(DbContextOptions<YpContext> options)
         : base(options)
     {
     }
@@ -47,7 +47,7 @@ public partial class PostgresContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=YP;Username=postgres;Password=123");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=YP;Username=postgres;Password=123;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -252,7 +252,9 @@ public partial class PostgresContext : DbContext
 
             entity.ToTable("schedule_activeties_jury");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('schedule_activeties_moderators_jury_id_seq'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.IdJuryUser).HasColumnName("id_jury_user");
             entity.Property(e => e.IdScheduleActivity).HasColumnName("id_schedule_activity");
 
@@ -273,7 +275,9 @@ public partial class PostgresContext : DbContext
 
             entity.ToTable("schedule_events");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('events_activities_id_seq'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Day).HasColumnName("day");
             entity.Property(e => e.IdEvent).HasColumnName("id_event");
             entity.Property(e => e.IdWinnerUser).HasColumnName("id_winner_user");

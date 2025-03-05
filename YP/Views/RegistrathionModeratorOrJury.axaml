@@ -26,6 +26,10 @@
 						<TextBox Text="{Binding NewUser.FullName}" Width="200"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Электронная почта"/>
+						<TextBox Text="{Binding NewUser.Email}" Width="200"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Пол:"/>
 						<ComboBox ItemsSource="{Binding Genders}" Width="200" SelectedItem="{Binding NewUser.IdGenderNavigation}">
 							<ComboBox.ItemTemplate>
@@ -101,6 +105,12 @@
 						</StackPanel>
 					</StackPanel>
 					<TextBlock Text="Пароли не совпадают" Foreground="Red" IsVisible="{Binding IsWrongRepeatPassword}"/>
+					<TextBlock Text="Электронная почта неправильная" Foreground="Red" IsVisible="{Binding IsWrongEmail}"/>
+					<TextBlock Text="Пароль не содержит не менее 6 символов;
+• заглавные и строчные буквы;
+• не менее одного спецсимвола;
+• не менее одной цифры." TextWrapping="Wrap" Foreground="Red" IsVisible="{Binding IsWrongRegexPassword}"/>
+
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
 						<Button Content="Ок" Command="{Binding SaveNewJuryOrModerator}" Padding="30 3 30 3" Margin="0 0 10 0"/>
 						<Button Content="Отмена" Command="{Binding ToManager}" Padding="15 3 15 3"/>
