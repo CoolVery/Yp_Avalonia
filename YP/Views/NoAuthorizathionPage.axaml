@@ -8,7 +8,17 @@
 			 x:DataType="vm:NoAuthorizathionPageViewModel">
 	
 	<Grid RowDefinitions="*, 5*" ShowGridLines="True">
-		<Button Content="Авторизироваться" Command="{Binding ToAuth}"/>
+		<StackPanel Orientation="Horizontal">
+			<Button Content="Авторизироваться" Command="{Binding ToAuth}"/>
+			<TextBox Watermark="Введите дату" Text="{Binding SearchData}"/>
+			<ComboBox ItemsSource="{Binding ListDirections}" SelectedItem="{Binding SelectedDirection}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Name}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+		</StackPanel>
 		<ListBox Grid.Row="1" ItemsSource="{Binding ListEventsDTO}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>

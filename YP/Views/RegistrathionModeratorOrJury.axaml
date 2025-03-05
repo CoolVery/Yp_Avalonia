@@ -37,7 +37,7 @@
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Роль:"/>
-						<ComboBox ItemsSource="{Binding Roles}" Width="200" SelectedItem="{Binding NewUser.IdRoleNavigation}">
+						<ComboBox ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRolesForUser}" Width="200">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding Name}"/>
@@ -47,12 +47,12 @@
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Телефон:"/>
-						<MaskedTextBox Mask="+7(000)-000-00-00" Width="200"/>
+						<MaskedTextBox Text="{Binding NewUser.Phone}" Mask="+7(000)-000-00-00" Width="200"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Направление:"/>
 						<StackPanel>
-							<ComboBox ItemsSource="{Binding Directions}" Width="200">
+							<ComboBox SelectedItem="{Binding SelectedDirectionForUser}" ItemsSource="{Binding Directions}" Width="200">
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
 										<TextBlock Text="{Binding Name}"/>
@@ -67,7 +67,7 @@
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
 						<TextBlock Margin="0 0 10 0" VerticalAlignment="Center" Text="Мероприятие:"/>
-						<ComboBox ItemsSource="{Binding Events}" Width="200">
+						<ComboBox IsEnabled="{Binding IsCanEventEnable}" SelectedItem="{Binding SelectedEventForUser}"  ItemsSource="{Binding Events}" Width="200">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding Name}"/>
@@ -75,30 +75,35 @@
 							</ComboBox.ItemTemplate>
 						</ComboBox>
 					</StackPanel>
+					<StackPanel> 
+						<TextBlock Foreground="Green" Text="Пользователь создан и сохранен в Базе данных" IsVisible="{Binding IsCreatedNewUser}"/>
+					</StackPanel>
 				</StackPanel>
 
 
 			</Grid>
 			<StackPanel Grid.Column="1" HorizontalAlignment="Right">
 				<StackPanel>
-					<Image />
+					<Image Source="{Binding Image}"/>
+					<Button Content="Загрузить изображение" Command="{Binding ChangeImg}"/>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Margin="53 0 10 0" Text="Пароль:"/>
-						<TextBox Width="200"/>
+						<TextBox Text="{Binding NewUser.Password}" PasswordChar="{Binding PasswordHideChar}" Width="200"/>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Margin="0 0 10 0" Text="Повтор пароля:"/>
 						<StackPanel>
-							<TextBox Width="200"/>
+							<TextBox Text="{Binding RepeatPassword}" PasswordChar="{Binding PasswordHideChar}" Width="200"/>
 							<StackPanel Orientation="Horizontal">
-								<CheckBox />
+								<CheckBox IsChecked="{Binding ShowPassword}"/>
 								<TextBlock FontSize="10" Text="Видимый пароль"/>
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
+					<TextBlock Text="Пароли не совпадают" Foreground="Red" IsVisible="{Binding IsWrongRepeatPassword}"/>
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-						<Button Content="Ок" Padding="30 3 30 3" Margin="0 0 10 0"/>
-						<Button Content="Отмена" Padding="15 3 15 3"/>
+						<Button Content="Ок" Command="{Binding SaveNewJuryOrModerator}" Padding="30 3 30 3" Margin="0 0 10 0"/>
+						<Button Content="Отмена" Command="{Binding ToManager}" Padding="15 3 15 3"/>
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>

@@ -9,17 +9,17 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+    public string? Email { get; set; }
 
-    public DateOnly Birthday { get; set; }
+    public DateOnly? Birthday { get; set; }
 
     public string Phone { get; set; } = null!;
 
-    public string Photo { get; set; } = null!;
+    public string? Photo { get; set; }
 
     public int IdGender { get; set; }
 
-    public int IdCountry { get; set; }
+    public int? IdCountry { get; set; }
 
     public int IdRole { get; set; }
 
@@ -27,7 +27,7 @@ public partial class User
 
     public string? Image { get; set; }
 
-    public virtual Country IdCountryNavigation { get; set; } = null!;
+    public virtual Country? IdCountryNavigation { get; set; }
 
     public virtual Gender IdGenderNavigation { get; set; } = null!;
 

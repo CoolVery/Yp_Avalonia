@@ -57,7 +57,7 @@ namespace YP.ViewModels
         }
         public void ToRegistrathionModeratorOrJury()
         {
-            MainWindowViewModel.Instance.Uc = new RegistrathionModeratorOrJury();
+            MainWindowViewModel.Instance.Uc = new RegistrathionModeratorOrJury(CurrentUser);
         }
     }
 }

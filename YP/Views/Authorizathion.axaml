@@ -9,6 +9,13 @@
 	<StackPanel>
 		<TextBox Watermark="Айди пользователя" Text="{Binding IdNumber}"/>
 		<TextBox Watermark="Пароль" Text="{Binding Password}" />
+		<UserControl Content="{Binding Capcha}"/>
+		<TextBox Width="200" Text="{Binding TbCapcha}"/>
+		<TextBlock IsVisible="{Binding WrongCapchaInput}" Text="Неправильная капча" HorizontalAlignment="Center" Foreground="Red"/>
+		<TextBlock IsVisible="{Binding WrongAuthDateInput}" Text="Неправильные данные пользователя" HorizontalAlignment="Center" Foreground="Red"/>
+		<TextBlock IsVisible="{Binding WrongIdUserInput}" Text="Айди пользователя должно быть числом" HorizontalAlignment="Center" Foreground="Red"/>
+		<TextBlock IsVisible="{Binding BlockSystem}" Text="Система заблокирована на 10 секунд" HorizontalAlignment="Center" Foreground="Red"/>
+
 		<Button Content="Войти" Command="{Binding AuthorizathionInSystem}"/>
 	</StackPanel>
 </UserControl>
