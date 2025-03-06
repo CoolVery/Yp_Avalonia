@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YP", "YP\YP.csproj", "{410C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REG_MARK_LIB", "REG_MARK_LIB\REG_MARK_LIB.csproj", "{2FB3BAB9-EECC-4CE8-92F5-9100D53ED95C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestREG_MARK_LIB", "TestREG_MARK_LIB\TestREG_MARK_LIB.csproj", "{0A9D3A5F-B30A-414D-9446-6C74B57F264A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2FB3BAB9-EECC-4CE8-92F5-9100D53ED95C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB3BAB9-EECC-4CE8-92F5-9100D53ED95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB3BAB9-EECC-4CE8-92F5-9100D53ED95C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9D3A5F-B30A-414D-9446-6C74B57F264A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9D3A5F-B30A-414D-9446-6C74B57F264A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9D3A5F-B30A-414D-9446-6C74B57F264A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9D3A5F-B30A-414D-9446-6C74B57F264A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
