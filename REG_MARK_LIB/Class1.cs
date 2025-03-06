@@ -115,7 +115,7 @@
             int indexFirstSymbolRangeStart = _correctSymbols.IndexOf(rangeStart[0]);
             int indexFirstSymbolRangeEnd = _correctSymbols.IndexOf(rangeEnd[0]);
             int indexFirstSymbolPrevMark = _correctSymbols.IndexOf(prevMark[0]);
-            if (indexFirstSymbolRangeStart <= indexFirstSymbolPrevMark && indexFirstSymbolPrevMark <= indexFirstSymbolRangeEnd)
+            if (indexFirstSymbolRangeStart < indexFirstSymbolPrevMark && indexFirstSymbolPrevMark < indexFirstSymbolRangeEnd)
             {
                 return GetNextMarkAfter(prevMark);
             }
@@ -124,7 +124,7 @@
                 int indexSecondSymbolRangeStart = _correctSymbols.IndexOf(rangeStart[4]);
                 int indexSecondSymbolRangeEnd = _correctSymbols.IndexOf(rangeEnd[4]);
                 int indexSecondSymbolPrevMark = _correctSymbols.IndexOf(prevMark[4]);
-                if (indexSecondSymbolRangeStart <= indexSecondSymbolPrevMark && indexSecondSymbolPrevMark <= indexSecondSymbolRangeEnd)
+                if (indexSecondSymbolRangeStart < indexSecondSymbolPrevMark && indexSecondSymbolPrevMark < indexSecondSymbolRangeEnd)
                 {
                     return GetNextMarkAfter(prevMark);
                 }
@@ -133,7 +133,7 @@
                     int indexThirdSymbolRangeStart = _correctSymbols.IndexOf(rangeStart[5]);
                     int indexThirdSymbolRangeEnd = _correctSymbols.IndexOf(rangeEnd[5]);
                     int indexThirdSymbolPrevMark = _correctSymbols.IndexOf(prevMark[5]);
-                    if (indexThirdSymbolRangeStart <= indexThirdSymbolPrevMark && indexThirdSymbolPrevMark <= indexThirdSymbolRangeEnd)
+                    if (indexThirdSymbolRangeStart < indexThirdSymbolPrevMark && indexThirdSymbolPrevMark < indexThirdSymbolRangeEnd)
                     {
                         return GetNextMarkAfter(prevMark);
                     }
@@ -187,7 +187,7 @@
                 case false:
                     numberMarkOne = Convert.ToInt32(mark1[1..4]);
                     numberMarkTwo = Convert.ToInt32(mark2[1..4]);
-                    countNumber = CountValueInMaxAndMin(numberMarkOne, numberMarkTwo);
+                    countNumber = 999 - Math.Min(numberMarkOne, numberMarkTwo) + Math.Max(numberMarkOne, numberMarkTwo);
                     int countValueFirstSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[0]), _correctSymbols.IndexOf(mark2[0])) + 1;
                     countValueSecondSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[4]), _correctSymbols.IndexOf(mark2[4])) + 1;
                     countValueThirdSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[5]), _correctSymbols.IndexOf(mark2[5])) + 1;
