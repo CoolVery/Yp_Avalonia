@@ -58,5 +58,21 @@ namespace TestREG_MARK_LIB
             string exprcted = "m051ty19";
             Assert.AreEqual(exprcted, result);
         }
+        [TestMethod]
+        public void Test_FirstAutoNumber_GetCombinationsCountInRange_AreEqual()
+        {
+            REG_MARK_LIB_CLASS markLibClass = new REG_MARK_LIB_CLASS();
+            int result = markLibClass.GetCombinationsCountInRange("a000aa19", "a999aa19");
+            int exprcted = 999;
+            Assert.AreEqual(exprcted, result);
+        }
+        [TestMethod]
+        public void Test_SecondAutoNumber_GetCombinationsCountInRange_AreEqual()
+        {
+            REG_MARK_LIB_CLASS markLibClass = new REG_MARK_LIB_CLASS();
+            int result = markLibClass.GetCombinationsCountInRange("b000bb19", "a999aa19");
+            int exprcted = 7992;
+            Assert.AreEqual(exprcted, result);
+        }
     }
 }

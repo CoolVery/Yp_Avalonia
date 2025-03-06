@@ -163,7 +163,14 @@
                 return "out of stock";
             }
         }
-        int GetCombinationsCountInRange(string mark1, string mark2)
+        int CountValueInMaxAndMin(int indexFirst, int indexSecond)
+        {
+            int maxValue = Math.Max(indexFirst, indexSecond);
+            int minValue = Math.Min(indexFirst, indexSecond);
+            int countNumber = maxValue - minValue;
+            return countNumber;
+        }
+        public int GetCombinationsCountInRange(string mark1, string mark2)
         {
             int indexFirstSymbolMarkOne = _correctSymbols.IndexOf(mark1[0]);
             int indexFirstSymbolMarkTwo = _correctSymbols.IndexOf(mark2[0]);
@@ -171,13 +178,22 @@
             {
                 case true:
                     int numberMarkOne = Convert.ToInt32(mark1[1..4]);
-                    int numberMarkTwo = Convert.ToInt32(mark1[1..4]);
-
-                    break;
+                    int numberMarkTwo = Convert.ToInt32(mark2[1..4]);
+                    int countNumber = CountValueInMaxAndMin(numberMarkOne, numberMarkTwo);
+                    int countValueSecondSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[4]), _correctSymbols.IndexOf(mark2[4])) + 1;
+                    int countValueThirdSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[5]), _correctSymbols.IndexOf(mark2[5])) + 1;
+                    int result = countNumber * countValueSecondSymbolInMark * countValueThirdSymbolInMark;
+                    return result;
                 case false:
-                    break;
-            }
-
+                    numberMarkOne = Convert.ToInt32(mark1[1..4]);
+                    numberMarkTwo = Convert.ToInt32(mark2[1..4]);
+                    countNumber = CountValueInMaxAndMin(numberMarkOne, numberMarkTwo);
+                    int countValueFirstSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[0]), _correctSymbols.IndexOf(mark2[0])) + 1;
+                    countValueSecondSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[4]), _correctSymbols.IndexOf(mark2[4])) + 1;
+                    countValueThirdSymbolInMark = CountValueInMaxAndMin(_correctSymbols.IndexOf(mark1[5]), _correctSymbols.IndexOf(mark2[5])) + 1;
+                    result = countNumber * countValueSecondSymbolInMark * countValueThirdSymbolInMark * countValueFirstSymbolInMark;
+                    return result;
+            }       
         }
 
     }
