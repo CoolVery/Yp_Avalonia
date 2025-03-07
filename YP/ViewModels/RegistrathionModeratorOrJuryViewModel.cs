@@ -108,8 +108,13 @@ namespace YP.ViewModels
             _directions = MainWindowViewModel.Instance.Dbcontext.Directions.ToList();
             _currentUser = currentUser; 
         }
+        /// <summary>
+        /// Select image for user
+        /// </summary>
+        /// <exception cref="NullReferenceException"></exception>
         public async void ChangeImg()
         {
+            //Открытие окна Windows
             if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop ||
                 desktop.MainWindow?.StorageProvider is not { } provider)
                 throw new NullReferenceException("Missing StorageProvider instance.");
@@ -124,14 +129,18 @@ namespace YP.ViewModels
 
                 return;
             }
+            //Обработка изображения
             await using var readStream = await files[0].OpenReadAsync();
             byte[] buffer = new byte[10000000];
             var bytes = readStream.ReadAtLeast(buffer, 1);
             Array.Resize(ref buffer, bytes);
             Image = new Bitmap(new MemoryStream(buffer));
+            //Получаем имя файла
             NewUser.Image = files[0].Name;
         }
-        
+        /// <summary>
+        /// Save new user in DB
+        /// </summary>
         public void SaveNewJuryOrModerator()
         {
             Regex regexEmail = new Regex(@"^[a-zA-Z0-9_%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
@@ -193,6 +202,9 @@ namespace YP.ViewModels
                 }
             }
         }
+        /// <summary>
+        /// Open manager page
+        /// </summary>
         public void ToManager()
         {
             MainWindowViewModel.Instance.Uc = new Manager(_currentUser);

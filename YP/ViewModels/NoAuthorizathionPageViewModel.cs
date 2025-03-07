@@ -58,11 +58,17 @@ namespace YP.ViewModels
             _listDirections = MainWindowViewModel.Instance.Dbcontext.TypesEvents.ToList();
             _listEventsDTOFull = new List<EventDTO>(_listEventsDTO);
         }
+        /// <summary>
+        /// Methods all filters for data
+        /// </summary>
         public void AllFilters()
         {
             SearchByData();
             FilterByDirection();
         }
+        /// <summary>
+        /// Search by text data
+        /// </summary>
         public void SearchByData()
         {
             switch (String.IsNullOrEmpty(SearchData))
@@ -75,6 +81,9 @@ namespace YP.ViewModels
                     break;
             }
         }
+        /// <summary>
+        /// Search by type direction
+        /// </summary>
         public void FilterByDirection()
         {
             switch (SelectedDirection == null)
@@ -84,6 +93,9 @@ namespace YP.ViewModels
                     break;
             }
         }
+        /// <summary>
+        /// Open auth screen
+        /// </summary>
         public void ToAuth()
         {
             FileInfo fileWithUserDate = new FileInfo("date_user.txt");
