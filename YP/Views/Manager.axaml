@@ -36,7 +36,7 @@
 					</Panel>
 				</Border>
 			</StackPanel>
-			<Button Grid.Column="2" Content="Зарегестрировать модератора/жюри" Command="{Binding ToRegistrathionModeratorOrJury}"/>
+			<Button Grid.Column="2" Content="Зарегистрировать модератора/жюри" Command="{Binding ToRegistrathionModeratorOrJury}"/>
 			</Grid>
 	</Grid>
 </UserControl>
